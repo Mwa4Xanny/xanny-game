@@ -4,7 +4,13 @@ class game {
         this.ctx = context;
         this.width = this.canvas.width;
         this.height = this.canvas.height;
+        this.player = new this.player(this);
     }
+
+render() {
+    this.ctx.fillStyle = 'red';
+    this.ctx.fillRect(100, 100, 50, 150)
+   }
 }
 
 window.addEventListener('load',function() {
@@ -12,4 +18,7 @@ window.addEventListener('load',function() {
     const ctx = canvas.getContext ('2d');
     canvas.width = 720;
     canvas.height = 720;
+
+     const game = new Game (canvas, ctx);
+     game.render();
 });
