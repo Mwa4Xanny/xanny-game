@@ -1,24 +1,51 @@
-class game {
-    constructor(canvas, context) {
+class Game {
+    constructor(canvas, context){
         this.canvas = canvas;
         this.ctx = context;
         this.width = this.canvas.width;
-        this.height = this.canvas.height;
-        this.player = new this.player(this);
+        this.height = this.canvas.height
+        this.baseHeight = 720;
+        this.ratio = this.height.height / this.baseHeight
+        this.player = new Player(this);
+        this.gravity = 1;
+
+        this.resize(window.innerwidth, window.innerheight)
+
+        window.addEventListener('resize', e=> {
+            this.resize(e.currentTarget.innerheight, e.currentTarget.innerwidth);
+        })
     }
 
-render() {
-    this.ctx.fillStyle = 'red';
-    this.ctx.fillRect(100, 100, 50, 150)
-   }
+        resize(width, height)   {
+            this.canvas.height = height;
+            this.canvas.width = width;
+            this.width = this.canvas.width;
+            this.height = this.canvas.height;
+            this.ctx.fillStyle = '#5995F2';
+            this.ratio = this.height / this.baseHeight;
+            this.player.resize();
+            console.log(this.height, this.baseHeight, this.ratio)
+
+
+    }
+
+    render() {
+        this.player.draw
+        this.player.update();
+    }
 }
 
-window.addEventListener('load',function() {
-    const canvas = document.getElementById('game-layout');
-    const ctx = canvas.getContext ('2d');
+window.addEventListener('load', function() {
+    const canvas = document-getElementById('game-layout');
+    const ctx = canvas-getContext('2d');
     canvas.width = 720;
     canvas.height = 720;
 
-     const game = new Game (canvas, ctx);
-     game.render();
+    const game = new Game (canvas,etc);
+    function animate () {
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        game.render();
+        requestAnimationFrame(animated);
+    }
+    this.requestAnimationFrame(animate);
 });
